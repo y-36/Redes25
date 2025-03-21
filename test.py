@@ -55,3 +55,12 @@ if response.status_code == 200:
     print("Película eliminada correctamente.")
 else:
     print("Error al eliminar la película.")
+
+
+# Ejemplo para probar filtrado por género:
+response = requests.get('http://localhost:5000/peliculas/genero/Acción')
+print("Películas de Acción:", response.json())
+
+# Probar recomendación para feriado:
+response = requests.get('http://localhost:5000/recomendar/Drama')
+print("Recomendación para feriado:", response.json())

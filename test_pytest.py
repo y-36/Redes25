@@ -50,3 +50,9 @@ def test_actualizar_detalle_pelicula(mock_response):
 def test_eliminar_pelicula(mock_response):
     response = requests.delete('http://localhost:5000/peliculas/1')
     assert response.status_code == 200
+
+def test_filtrar_por_genero(mock_response):
+    mock_response.get('http://localhost:5000/peliculas/genero/Acción', json=[...])
+    response = requests.get('http://localhost:5000/peliculas/genero/Acción')
+    assert response.status_code == 200
+
