@@ -52,7 +52,16 @@ def test_eliminar_pelicula(mock_response):
     assert response.status_code == 200
 
 def test_filtrar_por_genero(mock_response):
-    mock_response.get('http://localhost:5000/peliculas/genero/Acción', json=[...])
+    # Mock de respuesta con datos reales
+    mock_response.get(
+        'http://localhost:5000/peliculas/genero/Acción',
+        json=[
+            {'id': 1, 'titulo': 'Indiana Jones', 'genero': 'Acción'},
+            {'id': 2, 'titulo': 'Star Wars', 'genero': 'Acción'}
+        ]
+    )
+    
     response = requests.get('http://localhost:5000/peliculas/genero/Acción')
     assert response.status_code == 200
+    assert len(response.json()) == 2  # Verificar que hay 2 películas de Acción
 
